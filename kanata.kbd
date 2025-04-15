@@ -11,6 +11,7 @@
 )
 
 (defsrc
+  esc
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
   caps a    s    d    f    g    h    j    k    l    ;    '    ret
@@ -40,27 +41,39 @@
 )
 
 (deflayer base
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  esc
+  grv  1    2    3    @l-inl    @l-dsp    6    7    8    9    0    -    =    bspc
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-  caps a  s  @d   @f   g    h    @j    @k    l    ;  '  ret
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  @caps a  s  @d   @f   g    h    @j    @k    l    ;  '  ret
+  lsft z    x    c    v    b    n    m    ,    .    /    @rsft
   lmet lctl lalt           spc            ralt rmet
 )
 
 
 (deflayer nomods
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  esc
+  grv  1    2    3    @l-inl    @l-dsp    6    7    8    9    0    -    =    bspc
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-  caps a    s    d    f    g    h    j    k    l    ;    '    ret
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  @caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    @rsft
+  lmet lctl lalt           spc            ralt rmet
+)
+
+(deflayer audio
+  esc
+  S-grv  S-1    S-2    S-3    S-4    S-5    S-6    S-7    S-8    S-9    S-0    S--    S-=    ▶⏸
+  tab  S-q    S-w    S-e    S-r    S-t    S-y    S-u    S-i    S-o    S-p    ◀◀    ▶▶    \
+  @caps S-a    S-s    S-d    S-f    S-g    S-h    S-j    S-k    S-l    S-;    S-'    ret
+  lsft S-z    S-x    S-c    S-v    S-b    S-n    S-m    S-,    S-.    S-/    @rsft
   lmet lctl lalt           spc            ralt rmet
 )
 
 (deflayer nav
+  esc
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-  caps a    s    d    f    g    h    j    k    l    ;    '    ret
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  tab  q    w    e    r    t    y    M-up    M-down    o    p    C-left    C-right    \
+  @caps a    s    d    f    g    left    down    up    rght    M-left    M-right    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    @rsft
   lmet lctl lalt           spc            ralt rmet
 )
 
@@ -77,5 +90,9 @@
   f (tap-hold-release-keys $tap-time $hold-time (multi f @tap) lmet $left-hand-keys)
   j (tap-hold-release-keys $tap-time $hold-time (multi j @tap) rmet $right-hand-keys)
   k (tap-hold-release-keys $tap-time $hold-time (multi k @tap) rsft $right-hand-keys)
-  caps (tap-hold $tap-time $hold-time esc (layer-while-held nav))
+  td (tap-dance 200 ((layer-switch base) (layer-switch nav)))
+  caps (tap-hold $tap-time $hold-time @td esc)
+  rsft (layer-while-held audio)
+  l-inl (tap-hold $tap-time 300 4 (macro S-4 S-4 left))
+  l-dsp (tap-hold $tap-time 300 5 (macro ret S-4 S-4 ret ret S-4 S-4 up))
 )
