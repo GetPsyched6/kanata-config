@@ -45,7 +45,7 @@
   esc
   grv  1    2    3    @l-inl    @l-dsp    @l-fnl    7    8    9    0    -    =    bspc
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-  @caps a  s  @d   @f   g    h    @j    @k    l    ;  '  ret
+  @caps a  s  d   @f   g    h    @j    k    l    ;  '  ret
   lsft z    x    c    v    b    n    m    ,    .    /    @rsft
   lmet lctl lalt           spc            ralt rmet
 )
@@ -82,8 +82,8 @@
   esc
   grv  1    2    3    4    5    6    7    8    9    0    -    @l-yt    bspc
   tab  q    w    e    r    t    y    M-left    up    M-rght    p    C-left    C-rght    \
-  @caps a    M-x    M-c    M-v    M-a    M-c    left    down    rght    ;    '    ret
-  lsft z    x    c    v    @capsword    M-[    M-]    ,    .    /    @rsft
+  @caps M-a    M-x    M-c    M-v    M-a    @capsword    left    down    rght    ;    '    ret
+  lsft z    M-x    M-c    M-v    b    M-[    M-]    ,    .    /    @rsft
   lmet lctl lalt           bspc            ralt rmet
 )
 
@@ -96,10 +96,10 @@
     (on-idle-fakekey to-base tap 20)
   )
 
-  d (tap-hold-release-keys $tap-time $hold-time (multi d @tap) lsft $left-hand-keys)
-  f (tap-hold-release-keys $tap-time $hold-time (multi f @tap) lmet $left-hand-keys)
-  j (tap-hold-release-keys $tap-time $hold-time (multi j @tap) rmet $right-hand-keys)
-  k (tap-hold-release-keys $tap-time $hold-time (multi k @tap) rsft $right-hand-keys)
+  f (tap-hold-release-keys $tap-time $hold-time (multi f @tap) lsft $left-hand-keys)
+  ;; f (tap-hold-release-keys $tap-time $hold-time (multi d @tap) lmet $left-hand-keys)
+  ;; j (tap-hold-release-keys $tap-time $hold-time (multi k @tap) rmet $right-hand-keys)
+  j (tap-hold-release-keys $tap-time $hold-time (multi j @tap) rsft $right-hand-keys)
 
   ;; * Old technique - single tap base, double tap nav, hold esc
   ;; td (tap-dance 200 ((layer-switch base) (layer-switch nav)))
