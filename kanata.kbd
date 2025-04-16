@@ -90,10 +90,23 @@
   f (tap-hold-release-keys $tap-time $hold-time (multi f @tap) lmet $left-hand-keys)
   j (tap-hold-release-keys $tap-time $hold-time (multi j @tap) rmet $right-hand-keys)
   k (tap-hold-release-keys $tap-time $hold-time (multi k @tap) rsft $right-hand-keys)
-  td (tap-dance 200 ((layer-switch base) (layer-switch nav)))
-  caps (tap-hold $tap-time $hold-time @td esc)
+
+  ;; * Old technqiue - single tap base, double tap nav, hold esc
+  ;; td (tap-dance 200 ((layer-switch base) (layer-switch nav)))
+  ;; caps (tap-hold $tap-time $hold-time @td esc)
+
+  ;; * Current technique - tap to toggle base and nav, double tap esc, hold for shortcut layer
+  td (tap-dance 200 ((on-press toggle-vkey vk-nav) esc))
+  caps (tap-hold $tap-time $hold-time @td (layer-while-held audio))
+
   rsft (layer-while-held audio)
+
+  ;; * Quick way to do LaTeX
   l-inl (tap-hold $tap-time 300 4 (macro S-4 S-4 left))
   l-dsp (tap-hold $tap-time 300 5 (macro S-4 S-4 ret ret S-4 S-4 up))
   l-fnl (tap-hold $tap-time 300 6 (macro S-t h e spc f i n a l spc a n s w e r spc i s spc S-4 \ b o x e d S-[ S-] S-4 . left left left))
+)
+
+(defvirtualkeys
+vk-nav (layer-while-held nav)
 )
