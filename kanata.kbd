@@ -43,7 +43,7 @@
 
 (deflayer base
   esc
-  grv  1    2    3    @l-inl    @l-dsp    @l-fnl    7    8    9    0    -    =    bspc
+  grv  1    2    @l-txt    @l-inl    @l-dsp    @l-fnl    7    8    9    0    -    =    bspc
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
   @caps a  s  d   @f   g    h    @j    k    l    ;  '  ret
   lsft z    x    c    v    b    n    m    ,    .    /    @rsft
@@ -81,7 +81,7 @@
 (deflayer shortcuts
   esc
   grv  1    2    3    4    5    6    7    8    9    0    -    @l-yt    bspc
-  tab  q    w    e    r    t    y    M-left    up    M-rght    p    C-left    C-rght    \
+  tab  C-S-tab    C-tab    M-A-S-\    r    t    y    M-left    up    M-rght    p    C-left    C-rght    \
   @caps M-a    M-x    M-c    M-v    M-a    @capsword    left    down    rght    ;    '    ret
   lsft z    M-x    M-c    M-v    b    M-[    M-]    ,    .    /    @rsft
   lmet lctl lalt           bspc            ralt rmet
@@ -116,6 +116,7 @@
   l-yt (macro M-l bspc h t t p s S-; / / y o u t u b e . c o m ret)
 
   ;; * Quick way to do LaTeX
+  l-txt (tap-hold $tap-time 300 3 (macro \ t e x t S-[ S-] left))
   l-inl (tap-hold $tap-time 300 4 (macro S-4 S-4 left))
   l-dsp (tap-hold $tap-time 300 5 (macro S-4 S-4 ret ret S-4 S-4 up))
   l-fnl (tap-hold $tap-time 300 6 (macro S-t h e spc f i n a l spc a n s w e r spc i s spc S-4 \ b o x e d S-[ S-] S-4 . left left left))
